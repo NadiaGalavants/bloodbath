@@ -1,5 +1,5 @@
 // Aima service worker: makes the app open offline.
-const CACHE = 'aima-v3';
+const CACHE = 'aima-v4';
 const SHELL = [
   './',
   'index.html',
@@ -40,7 +40,8 @@ self.addEventListener('fetch', (e) => {
       const cached = await cache.match(req, { ignoreSearch: sameOrigin });
       if (isFont && cached) return cached;
       try {
-        const res = await fetch(req);
+        // 'no-cache' asks the server whether the file changed, so updates show on the next open.
+        const res = await fetch(req, sameOrigin ? { cache: 'no-cache' } : undefined);
         if (res && (res.ok || res.type === 'opaque')) cache.put(req, res.clone());
         return res;
       } catch {
