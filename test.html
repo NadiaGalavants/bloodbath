@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Luna cycle tests</title>
+<style>body{font-family:monospace;padding:16px}.ok{color:green}.bad{color:#8C0303;font-weight:bold}</style>
+</head>
+<body>
+<h1>Cycle logic tests</h1>
+<pre id="out"></pre>
+<script type="module">
+import * as c from './cycle.js';
+const out = document.getElementById('out');
+let pass = 0, fail = 0;
+const eq = (name, got, want) => {
+  const ok = JSON.stringify(got) === JSON.stringify(want);
+  ok ? pass++ : fail++;
+  out.innerHTML += `<span class="${ok ? 'ok' : 'bad'}">${ok ? 'PASS' : 'FAIL'}</span> ${name}${ok ? '' : ` — got ${JSON.stringify(got)}, want ${JSON.stringify(want)}`}\n`;
+};
+const settings = { cycleLength: 28, periodLength: 5 };
+const S = (periods) => ({ version: 1, settings, periods });
+
+// Dates
+eq('addDays across month', c.addDays('2026-11-28', 5), '2026-12-03');
+eq('diffDays across DST', c.diffDays('2026-11-02', '2026-10-20'), 13);
+
+// Phases, 28-day cycle, 5-day period: 1-5 M, 6-12 F, 13-15 O, 16-28 L
+eq('day 1 menstrual', c.phaseForDay(1, 28, 5), 'menstrual');
+eq('day 5 menstrual', c.phaseForDay(5, 28, 5), 'menstrual');
+eq('day 6 follicular', c.phaseForDay(6, 28, 5), 'follicular');
+eq('day 12 follicular', c.phaseForDay(12, 28, 5), 'follicular');
+eq('day 13 ovulation', c.phaseForDay(13, 28, 5), 'ovulation');
+eq('day 15 ovulation', c.phaseForDay(15, 28, 5), 'ovulation');
+eq('day 16 luteal', c.phaseForDay(16, 28, 5), 'luteal');
+eq('day 28 luteal', c.phaseForDay(28, 28, 5), 'luteal');
+eq('short cycle skips follicular', c.ovulationWindow(20, 7), { start: 8, end: 10 });
+
+// Averages
+eq('no history uses setup', c.blendedAverage([], 28), 28);
+eq('1 cycle blends with setup', c.blendedAverage([30], 28), 29);
+eq('3+ cycles use own average', c.blendedAverage([30, 30, 33], 28), 31);
+eq('only last 6 count', c.blendedAverage([50, 28, 28, 28, 28, 28, 28], 28), 28);
+eq('outlier cycles ignored', c.cycleLengths([{ start: '2026-01-01' }, { start: '2026-01-05' }, { start: '2026-02-02' }]), [28]);
+
+// Setup
+const set1 = c.fromSetup({ lastStart: '2026-11-13', cycleLength: 28, periodLength: 5 }, '2026-11-24', 'a');
+eq('setup closes past period', set1.periods[0].end, '2026-11-17');
+const set2 = c.fromSetup({ lastStart: '2026-11-22', cycleLength: 28, periodLength: 5 }, '2026-11-24', 'a');
+eq('setup keeps current period open', set2.periods[0].end, null);
+
+// Current status
+const cur = c.current(set1, '2026-11-24');
+eq('day 12', cur.day, 12);
+eq('phase follicular', cur.phase, 'follicular');
+eq('next period', cur.next, '2026-12-11');
+eq('days until', cur.daysUntil, 17);
+const late = c.current(set1, '2026-12-13');
+eq('late by 2 days', late.late, 2);
+eq('late is luteal', late.phase, 'luteal');
+eq('open period is menstrual', c.current(set2, '2026-11-24').phase, 'menstrual');
+
+// Logging
+let st = c.startPeriod(set1, '2026-12-10', 'b');
+eq('start adds open period', st.periods[1], { id: 'b', start: '2026-12-10', end: null });
+let st2 = c.startPeriod(st, '2026-12-20', 'c');
+eq('new start closes open one the day before', st2.periods[1].end, '2026-12-19');
+st = c.endPeriod(st, '2026-12-14');
+eq('end closes open period', st.periods[1].end, '2026-12-14');
+eq('cycle learned', c.cycleLengths(st.periods), [27]);
+
+// Auto close
+const ac = c.autoClose(set2, '2026-12-03');
+eq('auto close after P+5 days', ac.closed, true);
+eq('auto close sets P length', ac.state.periods[0].end, '2026-11-26');
+eq('no auto close early', c.autoClose(set2, '2026-11-30').closed, false);
+
+// Range
+const varied = S([{ id: 1, start: '2026-01-01', end: '2026-01-05' }, { id: 2, start: '2026-01-27', end: '2026-01-31' }, { id: 3, start: '2026-02-28', end: '2026-03-03' }, { id: 4, start: '2026-03-28', end: '2026-04-01' }]);
+eq('range when cycles vary', c.stats(varied).range, 3);
+
+// History
+const rows = c.historyRows(st.periods);
+eq('history newest first', rows[0].start, '2026-12-10');
+eq('history cycle length', rows[1].cycle, 27);
+eq('history period length', rows[1].length, 5);
+
+out.innerHTML = `<b>${pass} passed, ${fail} failed</b>\n\n` + out.innerHTML;
+document.title = fail ? `FAIL ${fail}` : `PASS ${pass}`;
+</script>
+</body>
+</html>
