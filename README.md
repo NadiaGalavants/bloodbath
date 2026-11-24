@@ -2,6 +2,8 @@
 
 A cute pixel-moon period tracker for two friends. It shows today's cycle day, your phase and when your next period is expected. Everything stays on your own phone.
 
+**Open it:** https://nadiagalavants.github.io/bloodbath/
+
 ## Files
 
 | File | What it does |
