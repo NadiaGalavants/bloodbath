@@ -1,5 +1,5 @@
 // Aima service worker: makes the app open offline.
-const CACHE = 'aima-v4';
+const CACHE = 'aima-v5';
 const SHELL = [
   './',
   'index.html',

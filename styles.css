@@ -5,7 +5,7 @@
   --deep: #8C0303;
   --wine: #8C1B39;
   --pixel: 'Press Start 2P', ui-monospace, monospace;
-  --body: 'Pixelify Sans', ui-monospace, monospace;
+  --body: 'Bitcount Prop Single', ui-monospace, monospace;
   color-scheme: light;
 }
 
@@ -19,7 +19,8 @@ html, body {
   background-size: 22px 22px;
   color: var(--wine);
   font-family: var(--body);
-  font-size: 18px;
+  font-size: 19px;
+  font-weight: 500;
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
   user-select: none;
@@ -45,7 +46,7 @@ svg.px, svg.ring, svg.buddy { image-rendering: pixelated; display: block; }
 .iconbtn {
   background: none; border: 0; padding: 10px; margin: -10px; cursor: pointer;
   display: flex; align-items: center; gap: 8px; color: var(--wine);
-  font-family: var(--pixel); font-size: 10px;
+  font-family: var(--pixel); font-size: 11px;
 }
 
 /* ---------- home ---------- */
@@ -66,18 +67,18 @@ svg.px, svg.ring, svg.buddy { image-rendering: pixelated; display: block; }
   align-items: center; justify-content: center; text-align: center; padding-top: 4px;
 }
 .daynum { font-family: var(--pixel); font-size: clamp(20px, 6.5vw, 26px); color: var(--deep); margin-top: 6px; text-transform: uppercase; }
-.phase { font-family: var(--pixel); font-size: 10px; color: var(--wine); margin-top: 8px; text-transform: uppercase; }
+.phase { font-family: var(--body); font-size: 19px; font-weight: 700; letter-spacing: 1px; color: var(--wine); margin-top: 8px; text-transform: uppercase; }
 .card, .tip, .install, .bubble, .btn, .avg, .list { position: relative; z-index: 1; }
 .ring .today { animation: pulse 1.6s steps(2) infinite; transform-box: fill-box; transform-origin: center; }
 
 .countdown { text-align: center; margin: 14px 0 4px; }
 .countdown .big { font-family: var(--pixel); font-size: clamp(12px, 3.8vw, 15px); color: var(--deep); }
-.countdown .small { font-family: var(--pixel); font-size: 10px; margin-top: 10px; color: var(--wine); }
+.countdown .small { font-family: var(--body); font-size: 19px; font-weight: 600; margin-top: 8px; text-transform: uppercase; letter-spacing: 1px; color: var(--wine); }
 
 .tip {
   position: relative; margin: 18px 4px 0; background: var(--pink);
   border: 3px solid var(--wine); box-shadow: inset 0 0 0 3px var(--blush);
-  padding: 16px 18px; text-align: center; font-size: 19px; line-height: 1.25; color: var(--wine);
+  padding: 16px 18px; text-align: center; font-size: 21px; line-height: 1.3; color: var(--wine);
 }
 .tip .heart { position: absolute; left: -12px; top: -12px; }
 
@@ -97,13 +98,13 @@ svg.px, svg.ring, svg.buddy { image-rendering: pixelated; display: block; }
 .btn.small:active { transform: translate(4px, 4px); }
 .btn + .btn { margin-top: 16px; }
 
-.note { text-align: center; font-size: 13px; opacity: 0.8; margin-top: 18px; }
+.note { text-align: center; font-size: 15px; opacity: 0.85; margin-top: 18px; }
 
 .install {
   margin: 14px 0 0; border: 3px dashed var(--wine); background: rgba(242, 153, 169, 0.5);
-  padding: 12px 14px; font-size: 16px; line-height: 1.3; display: flex; gap: 10px; align-items: flex-start;
+  padding: 12px 14px; font-size: 17px; line-height: 1.3; display: flex; gap: 10px; align-items: flex-start;
 }
-.install b { font-family: var(--pixel); font-size: 10px; font-weight: 400; display: block; margin-bottom: 6px; }
+.install b { font-family: var(--body); font-size: 18px; font-weight: 800; display: block; margin-bottom: 6px; }
 .install .x { margin-left: auto; background: none; border: 0; font-family: var(--pixel); color: var(--wine); font-size: 12px; cursor: pointer; padding: 4px; }
 
 /* decorations */
@@ -122,13 +123,13 @@ svg.px, svg.ring, svg.buddy { image-rendering: pixelated; display: block; }
   background: var(--blush); border: 3px solid var(--wine); box-shadow: 5px 5px 0 var(--wine);
   padding: 16px; margin-bottom: 18px;
 }
-.card h2 { font-size: 10px; line-height: 1.6; margin-bottom: 12px; }
+.card h2 { font-family: var(--body); font-size: 20px; font-weight: 700; line-height: 1.25; margin-bottom: 12px; text-transform: none; }
 .hello { text-align: center; margin: 8px 0 20px; }
 .hello h1 { font-size: 18px; margin-top: 14px; }
-.hello p { margin: 12px 0 0; font-size: 18px; }
+.hello p { margin: 12px 0 0; font-size: 19px; }
 
 input[type="date"] {
-  width: 100%; font-family: var(--pixel); font-size: 12px; color: var(--wine);
+  width: 100%; font-family: var(--body); font-size: 20px; font-weight: 700; color: var(--wine);
   background: var(--pink); border: 3px solid var(--wine); border-radius: 0;
   padding: 12px; -webkit-appearance: none; appearance: none; min-height: 48px;
 }
@@ -139,22 +140,22 @@ input[type="date"] {
 }
 .stepper button:active { transform: translate(3px, 3px); box-shadow: none; }
 .stepper .val { font-family: var(--pixel); font-size: 14px; color: var(--deep); }
-.hint { font-size: 15px; margin-top: 10px; opacity: 0.85; }
+.hint { font-size: 17px; line-height: 1.3; margin-top: 10px; opacity: 0.9; }
 
 .avg { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
 .avg div { background: var(--pink); border: 3px solid var(--wine); padding: 12px; text-align: center; }
 .avg .n { font-family: var(--pixel); font-size: 16px; color: var(--deep); display: block; margin-bottom: 8px; }
-.avg .l { font-size: 15px; }
+.avg .l { font-size: 17px; }
 
 .list { list-style: none; padding: 0; margin: 18px 0 0; }
 .list li + li { margin-top: 10px; }
 .row {
   width: 100%; text-align: left; display: flex; align-items: center; gap: 12px; cursor: pointer;
   background: var(--blush); color: var(--wine); border: 3px solid var(--wine); padding: 12px;
-  font-family: var(--body); font-size: 16px;
+  font-family: var(--body); font-size: 17px; font-weight: 500;
 }
 .row:active { background: var(--pink); }
-.row .d { font-family: var(--pixel); font-size: 11px; color: var(--deep); display: block; margin-bottom: 6px; line-height: 1.5; }
+.row .d { font-family: var(--body); font-size: 20px; font-weight: 800; color: var(--deep); display: block; margin-bottom: 4px; }
 .row .chev { margin-left: auto; }
 .empty { text-align: center; padding: 20px 0; }
 
@@ -170,15 +171,15 @@ input[type="date"] {
   animation: up 160ms steps(4);
 }
 #sheet .panel h2 { font-size: 12px; margin-bottom: 18px; text-align: center; }
-#sheet label { display: block; font-family: var(--pixel); font-size: 9px; margin: 0 0 8px; }
+#sheet label { display: block; font-family: var(--body); font-size: 18px; font-weight: 700; margin: 0 0 8px; }
 #sheet .field { margin-bottom: 16px; }
-.err { color: var(--deep); font-family: var(--pixel); font-size: 9px; line-height: 1.6; min-height: 14px; margin-bottom: 12px; }
+.err { color: var(--deep); font-family: var(--body); font-size: 18px; font-weight: 700; line-height: 1.3; min-height: 22px; margin-bottom: 12px; }
 
 /* ---------- toast + effects ---------- */
 #toast {
   position: fixed; left: 50%; top: calc(env(safe-area-inset-top) + 14px); transform: translateX(-50%);
   z-index: 30; width: min(92vw, 400px); background: var(--wine); color: var(--blush);
-  font-family: var(--pixel); font-size: 10px; line-height: 1.6; padding: 12px 14px; text-align: center;
+  font-family: var(--body); font-size: 18px; font-weight: 700; line-height: 1.3; padding: 12px 14px; text-align: center;
   box-shadow: 4px 4px 0 var(--crimson);
 }
 #toast[hidden] { display: none; }
