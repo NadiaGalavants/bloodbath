@@ -1,5 +1,5 @@
-// Luna service worker: makes the app open offline.
-const CACHE = 'luna-v2';
+// Aima service worker: makes the app open offline.
+const CACHE = 'aima-v3';
 const SHELL = [
   './',
   'index.html',

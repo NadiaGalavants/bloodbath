@@ -1,4 +1,4 @@
-// Pixel-art sprites for Luna, drawn as SVG from little bitmaps.
+// Pixel-art sprites for Aima, drawn as SVG from little bitmaps.
 
 export const COLORS = {
   blush: '#F2C9C9',

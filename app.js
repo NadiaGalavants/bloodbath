@@ -98,7 +98,7 @@ function render() {
 
 function header() {
   return `<div class="top">
-    <div class="brand">${sprite('crescent', COLORS.crimson, 24)}<span>Luna</span></div>
+    <div class="brand">${sprite('crescent', COLORS.crimson, 24)}<span>Aima</span></div>
     <button class="iconbtn" data-action="menu" aria-label="Open menu">${sprite('menu', COLORS.wine, 26)}</button>
   </div>`;
 }
@@ -122,7 +122,7 @@ function installCard() {
   try { dismissed = localStorage.getItem(DISMISS_KEY) === '1'; } catch {}
   if (isStandalone() || dismissed) return '';
   const how = installEvent
-    ? `<button class="btn small light" data-action="install" style="margin-top:8px">Install Luna</button>`
+    ? `<button class="btn small light" data-action="install" style="margin-top:8px">Install Aima</button>`
     : isIOS()
       ? 'In Safari, tap the Share button, then "Add to Home Screen".'
       : 'In your browser menu, tap "Install app" or "Add to Home screen".';
@@ -195,7 +195,7 @@ function renderSetup() {
     ${decorations()}
     <div class="hello">
       <div style="display:flex;justify-content:center">${buddy('follicular', 110)}</div>
-      <h1>Hi! I'm Luna</h1>
+      <h1>Hi! I'm Aima</h1>
       <p>3 quick questions and we're ready.</p>
     </div>
     <div class="card">
@@ -232,7 +232,7 @@ function renderHistory() {
       <div><span class="n">${C}</span><span class="l">day cycle on average</span></div>
       <div><span class="n">${P}</span><span class="l">day period on average</span></div>
     </div>
-    ${cycleCount < 3 ? '<p class="hint" style="margin-top:-6px;margin-bottom:16px">Luna learns your real averages after a few logged cycles.</p>' : ''}
+    ${cycleCount < 3 ? '<p class="hint" style="margin-top:-6px;margin-bottom:16px">Aima learns your real averages after a few logged cycles.</p>' : ''}
     <button class="btn small light" data-action="add-past">+ Add a past period</button>
     <ul class="list">
       ${rows
@@ -260,14 +260,14 @@ function renderSettings() {
     <div class="card">
       <h2>Usual period length</h2>
       ${stepper('set-periodLength', s.periodLength, 'DAY')}
-      <p class="hint">Used until Luna has learned from 3 of your logged cycles.</p>
+      <p class="hint">Used until Aima has learned from 3 of your logged cycles.</p>
     </div>
     <div class="card">
       <h2>Your data</h2>
       <p class="hint" style="margin-top:0">Saved only on this phone. Deleting the app or clearing website data erases it.</p>
       <button class="btn small ghost" data-action="reset" style="margin-top:12px">Erase everything</button>
     </div>
-    <p class="note">Luna · predictions are estimates, not medical or contraception advice.</p>`;
+    <p class="note">Aima · predictions are estimates, not medical or contraception advice.</p>`;
 }
 
 // ---------- sheets ----------
@@ -424,7 +424,7 @@ const actions = {
   'save-edit': saveEdit,
   'delete-edit': deleteEdit,
   reset: () => {
-    if (!confirm('Erase all your Luna data? This cannot be undone.')) return;
+    if (!confirm('Erase all your Aima data? This cannot be undone.')) return;
     state = null;
     save();
     view = 'home';

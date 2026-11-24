@@ -1,4 +1,4 @@
-# Luna
+# Aima
 
 A cute pixel-moon period tracker for two friends. It shows today's cycle day, your phase and when your next period is expected. Everything stays on your own phone.
 
@@ -33,7 +33,7 @@ Then, on each phone:
 - **iPhone:** open the link in Safari, tap Share, then **Add to Home Screen**.
 - **Android:** open the link in Chrome, tap the menu, then **Install app**.
 
-Luna then opens from its own icon, full screen, and works offline.
+Aima then opens from its own icon, full screen, and works offline.
 
 ## Good to know
 

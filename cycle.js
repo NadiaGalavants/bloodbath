@@ -1,4 +1,4 @@
-// Cycle maths for Luna. Pure functions, no DOM, so they can be tested.
+// Cycle maths for Aima. Pure functions, no DOM, so they can be tested.
 // Dates are local calendar dates as 'YYYY-MM-DD' strings.
 
 export const DAY_MS = 86400000;

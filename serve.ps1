@@ -1,4 +1,4 @@
-# Tiny static file server for previewing Luna locally: powershell -File serve.ps1
+# Tiny static file server for previewing Aima locally: powershell -File serve.ps1
 param([int]$Port = 5173)
 $root = $PSScriptRoot
 $types = @{
@@ -9,7 +9,7 @@ $types = @{
 $listener = New-Object System.Net.HttpListener
 $listener.Prefixes.Add("http://localhost:$Port/")
 $listener.Start()
-Write-Host "Luna running at http://localhost:$Port/"
+Write-Host "Aima running at http://localhost:$Port/"
 while ($listener.IsListening) {
   $ctx = $listener.GetContext()
   $path = [Uri]::UnescapeDataString($ctx.Request.Url.AbsolutePath)
